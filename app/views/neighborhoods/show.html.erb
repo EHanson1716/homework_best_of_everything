@@ -9,21 +9,14 @@
   <dt>City</dt>
   <dd><%= @neighborhood.city %></dd>
 
-  <% venues= Venue.where({ neighborhood_id => @neighborhood_id})
-  <dt>Venues in this area</dt>
+  <% venues= Venue.where({ :neighborhood_id => @neighborhood.id }) %>
 
+  <dt>Venues in this area</dt>
+  <% venues.each do |venue| %>
+  <dd>
+    <%= Venue.find_by({ :id => venue.id }).name %>
+  </dd>
+  <% end %>
 
 
 </dl>
-
- <% favorites = Favorite.where({ :user_id => 1 }) %>
-# <dl class="dl-horizontal">
-#   <dt>Your favorites!</dt>
-#   <% favorites.each do |favorite| %>
-#   <dd>
-#   <%= Dish.find_by({ :id => favorite.dish_id }).name %>
-#   at
-#   <%= Venue.find_by({ :id => favorite.venue_id }).name %>
-#   </dd>
-#   <% end %>
-# </dl>
