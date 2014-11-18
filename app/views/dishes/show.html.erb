@@ -2,6 +2,7 @@
   <h1>Dish #<%= @dish.id %></h1>
 </div>
 
+
 <dl class="dl-horizontal">
   <dt>Name</dt>
   <dd><%= @dish.name %></dd>
@@ -9,4 +10,16 @@
   <dt>Cuisine Name</dt>
   <dd><%= Cuisine.find_by({ :id => @dish.cuisine_id }).name %></dd>
 
+
+  <dt>Where you should get it</dt>
+  <% favorites = Favorite.where({ :dish_id => @dish.id }) %>
+  <% favorites.each do |favorite| %>
+  <dd>
+  If your name is
+  <%= User.find_by({ :id => favorite.user_id }).username %>
+  get it at
+  <%= Venue.find_by({ :id => favorite.venue_id }).name %>
+  </dd>
+  <% end %>
 </dl>
+
