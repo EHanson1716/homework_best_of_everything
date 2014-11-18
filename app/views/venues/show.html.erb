@@ -18,6 +18,16 @@
   <dt>Longitude</dt>
   <dd><%= @longitude %></dd>
 
+  <dt>Stuff people like here</dt>
+  <% favorites = Favorite.where({ :venue_id => @venue.id }) %>
+  <% favorites.each do |favorite| %>
+  <dd>
+  <%= User.find_by({ :id => favorite.user_id }).username %>
+  really likes the
+  <%= Dish.find_by({ :id => favorite.dish_id }).name %>
+  </dd>
+  <% end %>
+
   <dt>Map</dt>
   <dd>
     <!-- Code for Google Map -->
