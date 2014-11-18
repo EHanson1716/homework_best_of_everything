@@ -1,6 +1,11 @@
 class FavoritesController < ApplicationController
   def index
     @favorites = Favorite.all
+
+    # f = Favorite.find_by({ :user_id => 1 })
+    # user_id = f.user_id
+    # user_name =
+
   end
 
   def show
