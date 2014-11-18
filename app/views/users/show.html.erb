@@ -7,7 +7,7 @@
   <dd><%= @user.username %></dd>
 </dl>
 
-<% favorites = Favorite.where({ :user_id => 1 }) %>
+<% favorites = Favorite.where({ :user_id => @user.id }) %>
 <dl class="dl-horizontal">
   <dt>Your favorites!</dt>
   <% favorites.each do |favorite| %>
