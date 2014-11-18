@@ -5,5 +5,17 @@
 <dl class="dl-horizontal">
   <dt>Username</dt>
   <dd><%= @user.username %></dd>
-
 </dl>
+
+<% favorites = Favorite.where({ :user_id => 1 }) %>
+<dl class="dl-horizontal">
+  <dt>Your favorites!</dt>
+  <% favorites.each do |favorite| %>
+  <dd>
+  <%= Dish.find_by({ :id => favorite.dish_id }).name %>
+  at
+  <%= Venue.find_by({ :id => favorite.venue_id }).name %>
+  </dd>
+  <% end %>
+</dl>
+
